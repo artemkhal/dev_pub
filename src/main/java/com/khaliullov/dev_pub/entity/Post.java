@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -24,13 +25,24 @@ public class Post {
     short isActive;
     @Column(name = "moderation_status")
     ModerationStatus moderationStatus;
-    @Column(name = "moderator_id")
-    int moderatorId;
-    @Column(name = "user_id")
-    int userId;
+    @JoinColumn(name = "moderator_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    User moderatorId;
+    @JoinColumn(name = "user_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    User userId;
     LocalDateTime time;
     String title;
     String text;
     @Column(name = "view_count")
     int viewCount;
+
+    @Transient
+    @OneToMany
+    Set<PostComment> postComments;
+    @Transient
+    @OneToMany
+    Set<PostVote> postVotes;
+
+
 }

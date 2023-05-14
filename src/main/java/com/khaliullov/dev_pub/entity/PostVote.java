@@ -19,9 +19,12 @@ public class PostVote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;// INT NOT NULL AUTO_INCREMENT user_id INT NOT NULL
-    @Column(name = "post_id")
-    int postId;// INT NOT NULL
+    int id;// INT NOT NULL AUTO_INCREMENT
+    @OneToOne(cascade = CascadeType.ALL)
+    User user_id;// INT NOT NULL
+    @JoinColumn(name = "post_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    Post postId;// INT NOT NULL
     LocalDateTime time;// DATETIME NOT NULL
     byte value;// TINYINT NOT NULL
 }

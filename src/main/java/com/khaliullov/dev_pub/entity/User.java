@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -30,4 +31,8 @@ public class User {
     String code;//код для восстановления пароля, может быть NULL
     @Column(name = "photo")
     String photoPath;//фотография (ссылка на файл), может быть NULL
+
+    @Transient
+    @OneToMany
+    Set<Post> posts;
 }

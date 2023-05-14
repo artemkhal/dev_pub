@@ -18,9 +18,11 @@ public class Tag2Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;// INT NOT NULL AUTO_INCREMENT
-    @Column(name = "post_id")
-    int postId;// INT NOT NULL
-    @Column(name = "tag_id")
-    int tagId;// INT NOT NULL
+    @JoinColumn(name = "post_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    Post postId;// INT NOT NULL
+    @JoinColumn(name = "tag_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    Tag tagId;// INT NOT NULL
 
 }

@@ -23,10 +23,12 @@ public class PostComment {
     int id;// INT NOT NULL AUTO_INCREMENT
     @Column(name = "parent_id")
     int parentId;// INT
-    @Column(name = "post_id")
-    int postId;// INT NOT NULL
-    @Column(name = "user_id")
-    int userId;// INT NOT NULL
+    @JoinColumn(name = "post_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    Post postId;// INT NOT NULL
+    @JoinColumn(name = "user_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    User userId;// INT NOT NULL
     LocalDateTime time;// DATETIME NOT NULL
     String text;// TEXT NOT NULL
 }
